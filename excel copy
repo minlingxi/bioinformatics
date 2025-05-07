@@ -1,0 +1,24 @@
+Sub CopyABColumns()
+    Dim srcSheet As Worksheet
+    Dim dstSheet As Worksheet
+    Dim srcRow As Long, dstRow As Long
+    Dim i As Integer
+
+    Set srcSheet = Worksheets("Sheet1") ' 源表
+    Set dstSheet = Worksheets("Sheet2") ' 目标表
+
+    srcRow = 1  ' 源表起始行
+    dstRow = 1  ' 目标表起始行
+
+    Do While srcSheet.Cells(srcRow, 1).Value <> ""
+        ' 假设每组复制前4行的A、B列（即srcRow到srcRow+3）
+        For i = 0 To 3
+            dstSheet.Cells(dstRow + i, 1).Value = srcSheet.Cells(srcRow + i, 1).Value ' A列
+            dstSheet.Cells(dstRow + i, 2).Value = srcSheet.Cells(srcRow + i, 2).Value ' B列
+        Next i
+
+        ' 每组源数据占5行，目标数据占4行
+        srcRow = srcRow + 5
+        dstRow = dstRow + 4
+    Loop
+End Sub
