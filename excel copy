@@ -14,7 +14,7 @@ Sub CopyABColumns()
         ' 假设每组复制前4行的A、B列（即srcRow到srcRow+3）
         For i = 0 To 3
             dstSheet.Cells(dstRow + i, 1).Value = srcSheet.Cells(srcRow + i, 1).Value ' A列
-            dstSheet.Cells(dstRow + i, 2).Value = srcSheet.Cells(srcRow + i, 2).Value ' B列
+            dstSheet.Cells(dstRow + i, 2).Value = srcSheet.Cells(srcRow + i, 2).Value ' B列 #列的编号是数字形式（A=1，B=2，C=3，以此类推）因此改变数字就可以改变读取或者映射的列
         Next i
 
         ' 每组源数据占5行，目标数据占4行
