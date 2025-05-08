@@ -1,0 +1,35 @@
+#计算路易斯湖得分，无头痛计0分、轻微头痛计1分；无头晕计0分、轻微头晕计1分；胃口佳计0分、轻微胃口不佳计1分；无疲惫/虚弱计0分、轻微疲惫/虚弱计1分。随后计总分。
+Sub CalculateTotalScore()
+    Dim ws As Worksheet
+    Dim lastRow As Long
+    Dim i As Long
+    Dim totalScore As Integer
+    
+    ' 设置当前工作表
+    Set ws = ActiveSheet
+    
+    ' 找到 C 列的最后一行
+    lastRow = ws.Cells(ws.Rows.Count, "C").End(xlUp).Row
+    
+    ' 从第二行开始遍历
+    For i = 2 To lastRow
+        totalScore = 0 ' 初始化分数
+        
+        ' C列 - 头痛
+        If ws.Cells(i, "C").Value = "轻微头痛" Then totalScore = totalScore + 1
+        
+        ' D列 - 头晕
+        If ws.Cells(i, "D").Value = "轻微头晕" Then totalScore = totalScore + 1
+        
+        ' E列 - 胃口
+        If ws.Cells(i, "E").Value = "轻微胃口不佳" Then totalScore = totalScore + 1
+        
+        ' F列 - 疲惫/虚弱
+        If ws.Cells(i, "F").Value = "轻微疲惫/虚弱" Then totalScore = totalScore + 1
+        
+        ' 将得分写入 G 列
+        ws.Cells(i, "G").Value = totalScore
+    Next i
+    
+    MsgBox "得分计算完成，结果已写入 G 列！", vbInformation
+End Sub
